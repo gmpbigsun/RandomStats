@@ -7,4 +7,4 @@ For example: A sword with 72 base attack has between [68-74] damage.
  
 This enables people to grind for weapon and armor. 
 
-![](Assets/mod.gif)
+![](mod.gif)
