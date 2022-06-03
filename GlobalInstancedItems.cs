@@ -13,8 +13,8 @@ namespace RandomStats
     {
 
         public double randomStat;
-        private int rngMinValue;
-        private int rngMaxValue;
+        private readonly int rngMinValue;
+        private readonly int rngMaxValue;
 
 
         public override bool InstancePerEntity => true;

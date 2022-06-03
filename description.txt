@@ -1,5 +1,5 @@
 Grindy Weapon & Armor Stats
-Repository available at: https://github.com/gmpbigsun/RhosRequests
+Repository available at: https://github.com/gmpbigsun/RandomStats
 
 This mod allows your weapons and armor to have different base stats.
 Any item obtained no matter wether crafted or dropped will have a variable amount of damage or armor based on the original base value.
