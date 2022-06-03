@@ -2,7 +2,7 @@ name: Push on Master jobs
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   automaticpublish:
@@ -15,4 +15,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: .tmod file
-          path: ~/tModLoader/ModLoader/Mods/BossChecklist.tmod
+          path: ~/tModLoader/ModLoader/Mods/RandomStats.tmod
