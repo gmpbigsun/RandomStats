@@ -6,12 +6,6 @@ namespace RandomStats
 {
     class RandomStatsModPlayer : ModPlayer
     {
-
-        public override void OnEnterWorld(Player player)
-        {
-            base.OnEnterWorld(player);
-        }
-
         public override void PostBuyItem(NPC vendor, Item[] shopInventory, Item item)
         {
             if (item.maxStack == 1 && item.GetGlobalItem<GlobalInstancedItems>().randomStat == 0)
