@@ -36,10 +36,6 @@
 # For a complete CI/CD sample to get started with GitHub Action workflows for Desktop Applications,
 # refer to https://github.com/microsoft/github-actions-for-desktop-apps
 
-name: ModLoaderTools
-uses: chi-rei-den/ModLoaderTools@v1
-
-
 name: .NET Core Desktop
 
 on:
@@ -118,5 +114,5 @@ jobs:
         name: MSIX Package
         path: ${{ env.Wap_Project_Directory }}\AppPackages
 
-- name: ModLoaderTools
-  uses: chi-rei-den/ModLoaderTools@v1
+    - name: ModLoaderTools
+      uses: chi-rei-den/ModLoaderTools@v1
