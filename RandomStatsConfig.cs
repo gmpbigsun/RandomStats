@@ -13,6 +13,7 @@ namespace RandomStats
         [Increment(1)]
         [DrawTicks]
         [DefaultValue(125)]
+        [ReloadRequired]
         public int MaxRandomVariance;
 
         [Label("Minimum Random Variance in %:")]
@@ -20,6 +21,7 @@ namespace RandomStats
         [Increment(1)]
         [DrawTicks]
         [DefaultValue(75)]
+        [ReloadRequired]
         public int MinRandomVariance;
     }
 }
