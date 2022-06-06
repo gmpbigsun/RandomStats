@@ -6,6 +6,7 @@ using System.IO;
 using Terraria.DataStructures;
 using System.Text.RegularExpressions;
 using Terraria.ID;
+using System;
 
 namespace RandomStats
 {
@@ -89,8 +90,11 @@ namespace RandomStats
         {
             if (item.damage > 0 && item.maxStack == 1)
             {
+                string derpRegex = "[0-9]+";
+                long damageAfterBonusStats = Int64.Parse(Regex.Match(tooltips[1].Text, derpRegex).Value);
                 string damageNumberRegex = "[0-9]+";
-                string newText = Regex.Replace(tooltips[1].Text, damageNumberRegex, (randomStat == 0 ? "" : (int)(item.damage * (float)randomStat) + " ") + "[" + (int)(item.OriginalDamage * (double)(rngMinValue / 100.0)) + "-" + (int)(item.OriginalDamage * (double)(rngMaxValue / 100.0)) + "]");
+                long damageBonusThroughEquip = (damageAfterBonusStats - ((int)(item.damage * (float)randomStat)));
+                string newText = Regex.Replace(tooltips[1].Text, damageNumberRegex, (randomStat == 0 ? "" : (int)(item.OriginalDamage * (float)randomStat) + " ") + "[" + (int)(item.OriginalDamage * (double)(rngMinValue / 100.0)) + "-" + (int)(item.OriginalDamage * (double)(rngMaxValue / 100.0)) + "]" +(damageBonusThroughEquip != 0 ? "+[c/86FF70:" + damageBonusThroughEquip+ "]" : ""));
                 tooltips[1].Text = newText;
             }
             else if (item.defense > 0 && item.maxStack == 1 && (item.headSlot > 0 || item.bodySlot > 0 || item.legSlot > 0))
