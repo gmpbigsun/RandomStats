@@ -101,7 +101,7 @@ namespace RandomStats
                     string newText = Regex.Replace(tt.Text, damageNumberRegex,
                         (randomStat == 0 ? "" : (int)(item.OriginalDamage * (float)randomStat) + " ")
                             + "[" + (int)(item.OriginalDamage * (double)(rngMinValue / 100.0)) + "-" + (int)(item.OriginalDamage * (double)(rngMaxValue / 100.0)) + "]"
-                                + (damageBonusThroughEquip != 0 && randomStat != 0 ? ((damageBonusThroughEquip > 0) ? "+[c/86FF70:" + Math.Abs(damageBonusThroughEquip) + "]" : "-[c/FC3232:" + Math.Abs(damageBonusThroughEquip) + "]") : ""));
+                                + (damageBonusThroughEquip != 0 && randomStat != 0 ? ((damageBonusThroughEquip > 0) ? " +[c/86FF70:" + Math.Abs(damageBonusThroughEquip) + "]" : " -[c/FC3232:" + Math.Abs(damageBonusThroughEquip) + "]") : ""));
                     tt.Text = newText;
                 }
             }
@@ -137,6 +137,8 @@ namespace RandomStats
         public override void NetReceive(Item item, BinaryReader reader)
         {
             randomStat = reader.ReadDouble();
+            SetupRandomDamage(item);
+            SetupArmorDefense(item);
         }
     }
 }
