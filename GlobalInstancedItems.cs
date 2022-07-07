@@ -18,6 +18,7 @@ namespace RandomStats
         private readonly int rngMinValue;
         private readonly int rngMaxValue;
 
+        private double tempReforgeRandomStat = 0;
 
         public override bool InstancePerEntity => true;
 
@@ -33,6 +34,24 @@ namespace RandomStats
             GlobalInstancedItems myClone = (GlobalInstancedItems)base.Clone(item, itemClone);
             myClone.randomStat = randomStat;
             return myClone;
+        }
+
+        public override bool PreReforge(Item item)
+        {
+            if (item.damage > 0 && item.maxStack == 1)
+            {
+                this.tempReforgeRandomStat = randomStat;
+            }
+            return base.PreReforge(item);
+        }
+
+        public override void PostReforge(Item item)
+        {
+            if (item.damage > 0 && item.maxStack == 1)
+            {
+                item.GetGlobalItem<GlobalInstancedItems>().randomStat = tempReforgeRandomStat;
+            }
+            base.PostReforge(item);
         }
 
         public void SetupRandomDamage(Item item)
@@ -94,6 +113,7 @@ namespace RandomStats
                 TooltipLine tt = tooltips.FirstOrDefault(x => x.Name == "Damage" && x.Mod == "Terraria");
                 if (tt != null)
                 {
+                    //Main.NewText((float)randomStat);
                     string derpRegex = "[0-9]+";
                     long damageAfterBonusStats = Int64.Parse(Regex.Match(tt.Text, derpRegex).Value);
                     string damageNumberRegex = "[0-9]+";
