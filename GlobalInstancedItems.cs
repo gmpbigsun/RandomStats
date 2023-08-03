@@ -18,8 +18,6 @@ namespace RandomStats
         private readonly int rngMinValue;
         private readonly int rngMaxValue;
 
-        private double tempReforgeRandomStat = 0;
-
         public override bool InstancePerEntity => true;
 
         public GlobalInstancedItems()
@@ -34,24 +32,6 @@ namespace RandomStats
             GlobalInstancedItems myClone = (GlobalInstancedItems)base.Clone(item, itemClone);
             myClone.randomStat = randomStat;
             return myClone;
-        }
-
-        public override bool PreReforge(Item item)
-        {
-            if (item.damage > 0 && item.maxStack == 1)
-            {
-                this.tempReforgeRandomStat = randomStat;
-            }
-            return base.PreReforge(item);
-        }
-
-        public override void PostReforge(Item item)
-        {
-            if (item.damage > 0 && item.maxStack == 1)
-            {
-                item.GetGlobalItem<GlobalInstancedItems>().randomStat = tempReforgeRandomStat;
-            }
-            base.PostReforge(item);
         }
 
         public void SetupRandomDamage(Item item)
@@ -85,11 +65,11 @@ namespace RandomStats
             base.UpdateAccessory(item, player, hideVisual);
         }
 
-        public override void OnCreate(Item item, ItemCreationContext context)
+        public override void OnCreated(Item item, ItemCreationContext context)
         {
             SetupRandomDamage(item);
             SetupArmorDefense(item);
-            base.OnCreate(item, context);
+            base.OnCreated(item, context);
         }
 
         public override bool OnPickup(Item item, Player player)

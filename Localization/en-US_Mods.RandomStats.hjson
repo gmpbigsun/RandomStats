@@ -1,0 +1,16 @@
+Configs: {
+	RandomStatsConfig: {
+		DisplayName: Random Stats Config
+		Headers.randomstat_variance: Random Stat Variance
+
+		MaxRandomVariance: {
+			Label: Maximum Random Variance in %:
+			Tooltip: ""
+		}
+
+		MinRandomVariance: {
+			Label: Minimum Random Variance in %:
+			Tooltip: ""
+		}
+	}
+}
